@@ -37,132 +37,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BasicsCodeLabApp() {
-    var shouldShowOnboardingScreen by rememberSaveable { mutableStateOf(true) }
-
-    if (shouldShowOnboardingScreen) {
-        OnboardingScreen { shouldShowOnboardingScreen = false }
-    } else {
-        Greetings()
-    }
+    WellnessScreen()
 }
 
+@Preview(showSystemUi = true)
 @Composable
-fun OnboardingScreen(onContinueClicked: () -> Unit) {
-    Surface {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Welcome to the Basics Codelab!"
-            )
-            Button(
-                modifier = Modifier.padding(vertical = 24.dp),
-                onClick = onContinueClicked,
-            ) {
-                Text(
-                    text = "Continue"
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun Greetings(names: List<String> = List(1000) { "$it" }) {
-    Surface(
-        color = MaterialTheme.colors.background
-    ) {
-        LazyColumn(
-            modifier = Modifier.padding(vertical = 4.dp)
-        ) {
-            items(names) { name ->
-                Greeting(name)
-            }
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Card(
-        backgroundColor = MaterialTheme.colors.primary,
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-    ) {
-        CardContent(name)
-    }
-}
-
-@Composable
-private fun CardContent(name: String) {
-
-    var expanded by rememberSaveable { mutableStateOf(false) }
-
-    Surface(
-        color = MaterialTheme.colors.primary,
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-    ) {
-
-        Row(
-            modifier = Modifier
-                .padding(all = 12.dp)
-                .animateContentSize()
-        ) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(12.dp)
-            ) {
-                Text(
-                    text = "Hello, "
-                )
-                Text(
-                    text = name,
-                    style = MaterialTheme.typography.h4.copy(
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                )
-                if (expanded) {
-                    Text(
-                        text = ("Composem ipsum color sit lazy, padding theme elit, sed do bouncy. ").repeat(
-                            4
-                        )
-                    )
-                }
-            }
-
-            val (icon, description) = if (!expanded) {
-                Icons.Filled.ExpandMore to stringResource(id = R.string.show_less)
-            } else {
-                Icons.Filled.ExpandLess to stringResource(id = R.string.show_more)
-            }
-
-            IconButton(
-                onClick = { expanded = !expanded },
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = description,
-                )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true, widthDp = 320)
-@Composable
-fun GreetingsPreview() {
+fun BasicsCodeLabAppPreview() {
     BasicsCodelabTheme {
-        Greetings()
+        BasicsCodeLabApp()
     }
 }
-
-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
-@Composable
-fun OnboardingPreview() {
-    BasicsCodelabTheme {
-        OnboardingScreen(onContinueClicked = {})
-    }
-}
-

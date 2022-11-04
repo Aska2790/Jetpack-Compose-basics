@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.aska.sandbox.codelab'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.aska.sandbox.codelab"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -55,4 +55,5 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1"
 }
